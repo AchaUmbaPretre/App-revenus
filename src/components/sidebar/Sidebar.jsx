@@ -73,25 +73,31 @@ const Sidebar = () => {
             Accueil
           </Link>
         </Item>
-        <SubMenu key="clients" icon={<ShoppingCartOutlined style={{ fontSize: '17px' }} />} title="Ndoé" style={{ fontSize: '14px', letterSpacing: '1px' }}>
+        <SubMenu key="vente" icon={<ShoppingCartOutlined style={{ fontSize: '17px' }} />} title="Ndoé" style={{ fontSize: '14px', letterSpacing: '1px' }}>
           <Item key="1">
-            <Link to={'/client'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
+            <Link to={'/Liste_vente'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />} />
-              Liste des clients
+              Liste des ventes
+            </Link>
+          </Item>
+          <Item key="2">
+            <Link to={'/Liste_depense'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
+              <Timeline.Item dot={<span className="custom-dot" />} />
+              Liste des depenses
             </Link>
           </Item>
         </SubMenu>
-        <SubMenu key="traceurs" icon={<ClusterOutlined style={{ fontSize: '17px' }} />} title="Falcon" style={{ fontSize: '14px', letterSpacing: '1px' }}>
+        <SubMenu key="paiement" icon={<ClusterOutlined style={{ fontSize: '17px' }} />} title="Falcon" style={{ fontSize: '14px', letterSpacing: '1px' }}>
           <Item key="4">
-            <Link to={'/traceurs'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
+            <Link to={'/paiement'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />}  />
-              Liste des traceurs
+              Liste des paiements
             </Link>
           </Item>
           <Item key="5">
             <Link to={'/traceurs_form'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />} />
-              Enregistrer un nouveau traceur
+                liste de depenses
             </Link>
           </Item>
         </SubMenu>
