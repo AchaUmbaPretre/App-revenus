@@ -1,0 +1,109 @@
+.sidebar{
+    overflow-y: auto;
+    position: relative;
+    flex: 1.6;
+    height: 100vh;
+    top: 0;
+    position: sticky;
+    box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+    border-right: 1px solid #cfcfcf;
+    color: #8b8b8b;
+    padding: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: linear-gradient(180deg, rgba(1, 35, 138, 0.952), #234249) !important;
+
+    .ant-menu {
+        background: transparent !important;
+      }
+    
+      .ant-menu-item,
+      .ant-menu-submenu-title {
+        background: transparent !important;
+      }
+    
+      .ant-menu-item a,
+      .ant-menu-submenu-title a {
+        color: white !important;
+      }
+    
+      .ant-menu-item-selected {
+        background: rgba(255, 255, 255, 0.2) !important;
+      }
+    
+      .ant-menu-submenu-arrow {
+        color: white !important;
+      }
+}
+
+/* Personnalisation de la barre de défilement */
+.sidebar::-webkit-scrollbar {
+    width: 5px; 
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: #254a72; /* Couleur du "thumb" (le bouton de défilement) */
+    border-radius: 5px; /* Bord arrondi du "thumb" */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: #162941; /* Couleur du "thumb" au survol */
+}
+
+.sidebar_icons{
+    width: 100%;
+    height: 200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    padding: 5px 20px 10px 0;
+    border-bottom: 1px solid #13add859;
+}
+
+.menu-custom {
+    background: linear-gradient(180deg, #0D1B2A, #234249dc) !important;
+    color: #13AED8 !important;
+}
+
+.settings-submenu{
+    font-size: 15px;
+    color: #13AED8;
+}
+.sidebar_img{
+    width: 200px;
+    object-fit: cover;
+    height: auto;
+}
+.custom-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #13AED8;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  @media screen and (max-width: 568px){
+    .sidebar{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 200px;
+        height: 100%;
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+        z-index: 999;
+    }
+    .visible{
+        z-index: 999;
+        position: fixed;
+        transform: translateX(0);
+        z-index: 999;
+    }
+}
