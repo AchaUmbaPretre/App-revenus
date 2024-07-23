@@ -1,5 +1,5 @@
 import { Menu, Timeline } from 'antd';
-import { UserOutlined, ClusterOutlined, CarOutlined, HourglassOutlined, UsergroupAddOutlined,DollarOutlined , FileOutlined, HomeOutlined, ToolOutlined, SettingOutlined, LogoutOutlined } from '@ant-design/icons';
+import { ShoppingCartOutlined, ClusterOutlined, PoweroffOutlined,  HomeOutlined } from '@ant-design/icons';
 import 'antd/dist/reset.css';
 import './sidebar.scss';
 import logo from './../../assets/illustration.png';
@@ -73,27 +73,15 @@ const Sidebar = () => {
             Accueil
           </Link>
         </Item>
-        <SubMenu key="clients" icon={<UserOutlined style={{ fontSize: '17px' }} />} title="Clients" style={{ fontSize: '14px', letterSpacing: '1px' }}>
+        <SubMenu key="clients" icon={<ShoppingCartOutlined style={{ fontSize: '17px' }} />} title="Ndoé" style={{ fontSize: '14px', letterSpacing: '1px' }}>
           <Item key="1">
             <Link to={'/client'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />} />
               Liste des clients
             </Link>
           </Item>
-          <Item key="2">
-            <Link to={'/client_form'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
-              <Timeline.Item dot={<span className="custom-dot" />} />
-              Enregistrer un nouveau client
-            </Link>
-          </Item>
-          <Item key="3">
-            <Link to={'/sites'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
-              <Timeline.Item dot={<span className="custom-dot" />}/>
-              Sites
-            </Link>
-          </Item>
         </SubMenu>
-        <SubMenu key="traceurs" icon={<ClusterOutlined style={{ fontSize: '17px' }} />} title="Traceurs" style={{ fontSize: '14px', letterSpacing: '1px' }}>
+        <SubMenu key="traceurs" icon={<ClusterOutlined style={{ fontSize: '17px' }} />} title="Falcon" style={{ fontSize: '14px', letterSpacing: '1px' }}>
           <Item key="4">
             <Link to={'/traceurs'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />}  />
@@ -107,7 +95,7 @@ const Sidebar = () => {
             </Link>
           </Item>
         </SubMenu>
-        <Item key="deconnecter" icon={<LogoutOutlined style={{ fontSize: '17px' }} />} style={{ fontSize: '14px', letterSpacing: '1px' }} onClick={Logout}>
+        <Item key="deconnecter" icon={<PoweroffOutlined style={{ fontSize: '17px' }} />} style={{ fontSize: '14px', letterSpacing: '1px' }} onClick={Logout}>
           Déconnecter
         </Item>
       </Menu>
