@@ -68,7 +68,7 @@ const Sidebar = () => {
         style={{ width: '100%', backgroundColor: 'linear-gradient(180deg, #0D1B2A, #13AED8)', color: '#13AED8' }}
         theme="dark"
       >
-        <Item key="accueil" icon={<HomeOutlined style={{ fontSize: '17px' }} />} style={{ fontSize: '14px', letterSpacing: '1px' }}>
+        <Item key="accueil" icon={<HomeOutlined style={{ fontSize: '17px'}} />} style={{ fontSize: '14px', letterSpacing: '1px' }}>
           <Link to={'/'} onClick={handleLinkClick}>
             Accueil
           </Link>
@@ -97,7 +97,7 @@ const Sidebar = () => {
           <Item key="5">
             <Link to={'/traceurs_form'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />} />
-                liste de depenses
+                liste des depenses
             </Link>
           </Item>
         </SubMenu>
