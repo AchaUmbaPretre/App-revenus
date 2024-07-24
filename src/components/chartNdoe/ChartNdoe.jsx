@@ -36,7 +36,7 @@ const ChartNdoe = () => {
         options: {
             chart: {
                 type: 'line', // choisissez le type de graphique que vous voulez, par exemple 'line', 'bar', etc.
-                height: 350
+                height: 320
             },
             title: {
                 text: 'Historique des Ventes',
@@ -63,7 +63,7 @@ const ChartNdoe = () => {
                     options={chartOptions.options} 
                     series={chartOptions.series} 
                     type="line" 
-                    height={350} 
+                    height={320} 
                 />
             </div>
         </div>

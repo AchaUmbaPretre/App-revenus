@@ -55,7 +55,7 @@ const ChartFalcon = () => {
         options: {
             chart: {
                 type: 'line', // choisissez le type de graphique que vous voulez, par exemple 'line', 'bar', etc.
-                height: 350
+                height: 320
             },
             title: {
                 text: 'Historique des Paiements et Dépenses',
@@ -82,7 +82,7 @@ const ChartFalcon = () => {
                     options={chartOptions.options} 
                     series={chartOptions.series} 
                     type="line" 
-                    height={350} 
+                    height={320} 
                 />
             </div>
         </div>
