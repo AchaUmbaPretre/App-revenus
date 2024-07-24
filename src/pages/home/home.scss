@@ -1,3 +1,5 @@
+@import '../../style.scss';
+
 .home{
     width: 100%;
     display: flex;
@@ -35,5 +37,9 @@
         display: flex;
         justify-content: space-around;
         gap: 20px;
+        @include mobileXR{
+            display: grid;
+            grid-template-columns: repeat(1,1fr);
+        }
     }
 }
