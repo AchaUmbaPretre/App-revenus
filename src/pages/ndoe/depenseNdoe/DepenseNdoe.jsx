@@ -1,7 +1,6 @@
-import { SearchOutlined, SisternodeOutlined,DollarOutlined, PlusOutlined,UserOutlined, FilePdfOutlined, FileExcelOutlined,CalendarOutlined, PrinterOutlined, DeleteOutlined, EyeOutlined,} from '@ant-design/icons';
+import { DollarOutlined, UserOutlined, CalendarOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom'
-import { Button, Space, Table, Popover,Popconfirm, Tag, Modal, Input, Skeleton} from 'antd';
+import { Space, Table, Popover,Tag,Input, Skeleton} from 'antd';
 import axios from 'axios';
 import config from '../../../config';
 import moment from 'moment';
@@ -12,9 +11,9 @@ const DepenseNdoe = () => {
     const [data, setData] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const scroll = { x: 400 };
-    const [open, setOpen] = useState(false);
-    const [openDetail, setOpenDetail] = useState(false);
-    const [dateData, setDateData] = useState('');
+    // const [open, setOpen] = useState(false);
+    // const [openDetail, setOpenDetail] = useState(false);
+    // const [dateData, setDateData] = useState('');
 
 
     const columns = [

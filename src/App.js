@@ -8,6 +8,7 @@ import Sidebar from './components/sidebar/Sidebar';
 import ListeDepense from './pages/falcon/ListeDepense/ListeDepense';
 import ListePaiement from './pages/falcon/listePaiement/ListePaiement';
 import DepenseNdoe from './pages/ndoe/depenseNdoe/DepenseNdoe';
+import VenteNdoe from './pages/ndoe/venteNdoe/VenteNdoe';
 
 function App() {
 
@@ -48,6 +49,10 @@ function App() {
         {
           path: '/liste_depense_ndoe',
           element: <DepenseNdoe/>,
+        },
+        {
+          path: '/liste_vente_ndoe',
+          element: <VenteNdoe/>,
         },
         {
           path: '/liste_depense',

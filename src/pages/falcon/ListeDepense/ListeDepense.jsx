@@ -119,7 +119,7 @@ const ListeDepense = () => {
 
   return (
     <>
-                <div className="listePaiement">
+        <div className="listePaiement">
             <div className="liste_wrapper">
                 <div className="liste_wrapper-left">
                     <h2 className="liste_h2">FALCON : Dépense</h2>
