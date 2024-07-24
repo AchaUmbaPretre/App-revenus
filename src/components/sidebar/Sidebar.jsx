@@ -75,13 +75,13 @@ const Sidebar = () => {
         </Item>
         <SubMenu key="vente" icon={<ShoppingCartOutlined style={{ fontSize: '17px' }} />} title="Ndoé" style={{ fontSize: '14px', letterSpacing: '1px' }}>
           <Item key="1">
-            <Link to={'/Liste_vente'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
+            <Link to={'/liste_vente_ndoe'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />} />
               Liste des ventes
             </Link>
           </Item>
           <Item key="2">
-            <Link to={'/Liste_depense'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
+            <Link to={'/Liste_depense_ndoe'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />} />
               Liste des depenses
             </Link>
@@ -89,13 +89,13 @@ const Sidebar = () => {
         </SubMenu>
         <SubMenu key="paiement" icon={<ClusterOutlined style={{ fontSize: '17px' }} />} title="Falcon" style={{ fontSize: '14px', letterSpacing: '1px' }}>
           <Item key="4">
-            <Link to={'/paiement'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
+            <Link to={'/liste_paiement'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />}  />
               Liste des paiements
             </Link>
           </Item>
           <Item key="5">
-            <Link to={'/traceurs_form'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
+            <Link to={'/liste_depense'} style={{display:'flex', alignItems:'center'}} onClick={handleLinkClick}>
               <Timeline.Item dot={<span className="custom-dot" />} />
                 liste des depenses
             </Link>

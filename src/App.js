@@ -5,6 +5,9 @@ import Login from './pages/login/Login';
 import Register from './pages/register/Register';
 import Topbar from './components/topbar/Topbar';
 import Sidebar from './components/sidebar/Sidebar';
+import ListeDepense from './pages/falcon/ListeDepense/ListeDepense';
+import ListePaiement from './pages/falcon/listePaiement/ListePaiement';
+import DepenseNdoe from './pages/ndoe/depenseNdoe/DepenseNdoe';
 
 function App() {
 
@@ -41,6 +44,18 @@ function App() {
         {
           path: '/',
           element: <Home/>,
+        },
+        {
+          path: '/liste_depense_ndoe',
+          element: <DepenseNdoe/>,
+        },
+        {
+          path: '/liste_depense',
+          element: <ListeDepense/>,
+        },
+        {
+          path: '/liste_paiement',
+          element: <ListePaiement/>,
         }
       ]
     },
