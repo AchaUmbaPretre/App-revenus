@@ -36,10 +36,10 @@ const ChartNdoe = () => {
         options: {
             chart: {
                 type: 'line', // choisissez le type de graphique que vous voulez, par exemple 'line', 'bar', etc.
-                height: 320
+                height: 350
             },
             title: {
-                text: 'Historique des Ventes',
+                text: 'Historique',
                 align: 'center'
             },
             xaxis: {
