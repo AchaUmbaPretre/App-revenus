@@ -58,7 +58,7 @@ const ChartFalcon = () => {
                 height: 350
             },
             title: {
-                text: 'Historique',
+                text: '',
                 align: 'center'
             },
             xaxis: {
