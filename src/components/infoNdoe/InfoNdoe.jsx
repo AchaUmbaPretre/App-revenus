@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { VerticalAlignBottomOutlined,EllipsisOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
+import { VerticalAlignBottomOutlined, EllipsisOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import config from '../../config';
 import CountUp from 'react-countup';
 import { InputNumber, Select } from 'antd';
+
 const { Option } = Select;
 
 const InfoNdoe = () => {
@@ -13,14 +14,13 @@ const InfoNdoe = () => {
     const [dateFilter, setDateFilter] = useState('today');
     const [year, setYear] = useState(new Date().getFullYear());
 
-
-      const fetchData = useCallback(async (filter, year) => {
+    const fetchData = useCallback(async (filter, year) => {
         try {
             const params = { filter };
             if (filter === 'year') params.year = year;
 
             const { data } = await axios.get(`${DOMAIN}/api/rapport/venteTotal/total`, { params });
-                setVenteTotal(data[0]?.montant_total_vente || 0);
+            setVenteTotal(data[0]?.montant_total_vente || 0);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -32,7 +32,7 @@ const InfoNdoe = () => {
             if (filter === 'year') params.year = year;
 
             const { data } = await axios.get(`${DOMAIN}/api/depenses/depenseCount`, { params });
-                setDepenses(data[0]?.total_depense || 0);
+            setDepenses(data[0]?.total_depense || 0);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -61,7 +61,7 @@ const InfoNdoe = () => {
         <>
             <div className="home-rapport">
                 <div className="home-right">
-                    <Select value={dateFilter} onChange={handleDateFilterChange} style={{ width: 200, paddingRight:'10px' }}>
+                    <Select value={dateFilter} onChange={handleDateFilterChange} style={{ width: 200, paddingRight: '10px' }}>
                         <Option value="today">Aujourd'hui</Option>
                         <Option value="yesterday">Hier</Option>
                         <Option value="last7days">7 derniers jours</Option>
@@ -83,7 +83,7 @@ const InfoNdoe = () => {
                         </div>
                         <div className="info-row-container">
                             <div className="info-row-left" style={{ background: 'rgba(0, 255, 0, 0.164)' }}>
-                                <VerticalAlignBottomOutlined className='info-icon'style={{ color: 'green' }} />
+                                <VerticalAlignBottomOutlined className='info-icon' style={{ color: 'green' }} />
                             </div>
                             <div className="info-row-right">
                                 <h2 className="info-row-h2"><CountUp end={venteTotal} />$</h2>
@@ -110,6 +110,6 @@ const InfoNdoe = () => {
             </div>
         </>
     );
-}
+};
 
 export default InfoNdoe;
