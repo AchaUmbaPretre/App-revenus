@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { VerticalAlignBottomOutlined,EllipsisOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import config from '../../config';
@@ -12,35 +12,36 @@ const InfoFalcon = () => {
     const DOMAINFALCON = config.REACT_APP_SERVER_DOMAIN_FALCON;
     const [dateFilter, setDateFilter] = useState('today');
 
-    const handleDateFilterChange = (value) => {
+
+    const fetchData = useCallback(async (filter) => {
+        try {
+          const { data } = await axios.get(`${DOMAINFALCON}/depense/depenseTout`, { params: { filter } });
+          setDepenseFalcon(data[0]?.total_depense || 0);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }, [DOMAINFALCON]);
+    
+      const fetchDataDepense = useCallback(async (filter) => {
+        try {
+          const { data } = await axios.get(`${DOMAINFALCON}/paiement/paimentTout`, { params: { filter } });
+          setPaiement(data[0]?.total_paiement || 0);
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+      }, [DOMAINFALCON]);
+
+    useEffect(() => {
+        fetchData(dateFilter);
+        fetchDataDepense(dateFilter)
+      }, [ fetchData, fetchDataDepense, dateFilter ]);
+    
+    
+      const handleDateFilterChange = (value) => {
         setDateFilter(value);
-/*         fetchData(value); */
+        fetchData(value);
+        fetchDataDepense(value)
       };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axios.get(`${DOMAINFALCON}/depense/count1an`);
-                setDepenseFalcon(data[0]?.total_depense || 0);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [DOMAINFALCON]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axios.get(`${DOMAINFALCON}/paiement/paimentTout`);
-                console.log('Paiements:', data);
-                setPaiement(data[0]?.total_paiement || 0);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [DOMAINFALCON]);
 
     return (
         <>
