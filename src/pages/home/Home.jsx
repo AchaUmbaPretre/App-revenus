@@ -5,6 +5,8 @@ import ChartFalcon from '../../components/chartFalcon/ChartFalcon'
 import ChartNdoe from '../../components/chartNdoe/ChartNdoe'
 import { HomeOutlined } from '@ant-design/icons';
 import { Select, Tabs } from 'antd'
+import InfoNdoe from '../../components/infoNdoe/InfoNdoe'
+import InfoFalcon from '../../components/infoFalcon/InfoFalcon'
 const { Option } = Select;
 
 const Home = () => {
@@ -35,19 +37,31 @@ const Home = () => {
             </div> */}
             <Tabs defaultActiveKey="0" tabBarStyle={{ background: '#f0f2f5', padding: '10px 15px' }}>
                 <Tabs.TabPane tab='NDOE' key={0}>
+                    <div className="home-wrapper">
+                        <InfoNdoe/>
+                    </div>
+                    <div className='home-rows'>
+                        <ChartNdoe/>
+                    </div>
                 </Tabs.TabPane>
                 <Tabs.TabPane tab='FALCON' key={1}>
+                    <div className="home-wrapper">
+                        <InfoFalcon/>
+                    </div>
+                    <div className='home-rows'>
+                        <ChartFalcon/>
+                    </div>
                 </Tabs.TabPane>
                 <Tabs.TabPane tab='GENERAL' key={2}>
                     <div className="home-wrapper">
                         <InfoRevenus/>
                     </div>
+                    <div className='home-rows'>
+                        <ChartNdoe/>
+                        <ChartFalcon/>
+                    </div>
                 </Tabs.TabPane>
             </Tabs>
-            <div className='home-rows'>
-                <ChartNdoe/>
-                <ChartFalcon/>
-            </div>
         </div>
     </>
   )

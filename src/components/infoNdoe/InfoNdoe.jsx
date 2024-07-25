@@ -1,0 +1,126 @@
+import React, { useEffect, useState } from 'react';
+import { VerticalAlignBottomOutlined,EllipsisOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
+import axios from 'axios';
+import config from '../../config';
+import CountUp from 'react-countup';
+import { Select } from 'antd';
+const { Option } = Select;
+
+const InfoNdoe = () => {
+    const [venteTotal, setVenteTotal] = useState(0);
+    const [paiement, setPaiement] = useState(0);
+    const [depenses, setDepenses] = useState(0);
+    const [depensesFalcon, setDepenseFalcon] = useState(0);
+    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
+    const DOMAINFALCON = config.REACT_APP_SERVER_DOMAIN_FALCON;
+    const [dateFilter, setDateFilter] = useState('today');
+
+    const handleDateFilterChange = (value) => {
+        setDateFilter(value);
+/*         fetchData(value); */
+      };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`${DOMAIN}/api/rapport/venteTotal/total`);
+                console.log('Vente total:', data); // Vérifier les données
+                setVenteTotal(data[0]?.montant_total_vente || 0);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, [DOMAIN]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`${DOMAIN}/api/depenses/depenseCount`);
+                console.log('Dépenses:', data); // Vérifier les données
+                setDepenses(data[0]?.total_depense || 0);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, [DOMAIN]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`${DOMAINFALCON}/depense/count1an`);
+                console.log('Dépenses Falcon:', data); // Vérifier les données
+                setDepenseFalcon(data[0]?.total_depense || 0);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, [DOMAINFALCON]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data } = await axios.get(`${DOMAINFALCON}/paiement/paimentTout`);
+                console.log('Paiements:', data); // Vérifier les données
+                setPaiement(data[0]?.total_paiement || 0);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchData();
+    }, [DOMAINFALCON]);
+
+    return (
+        <>
+            <div className="home-rapport">
+                <div className="home-right">
+                    <Select value={dateFilter} onChange={handleDateFilterChange} style={{ width: 200 }}>
+                        <Option value="today">Aujourd'hui</Option>
+                        <Option value="yesterday">Hier</Option>
+                        <Option value="last7days">7 derniers jours</Option>
+                        <Option value="last30days">30 derniers jours</Option>
+                        <Option value="last1year">1 an</Option>
+                    </Select>
+                </div>
+            </div>
+            <div className="info-revenus">
+                <div className="info-wrapper">
+                    <div className="info-row">
+                        <div className="info_row_title">
+                            <h2 className="info-h2">Ndoé</h2>
+                            <EllipsisOutlined className='info-icon-elli' />
+                        </div>
+                        <div className="info-row-container">
+                            <div className="info-row-left" style={{ background: 'rgba(0, 255, 0, 0.164)' }}>
+                                <VerticalAlignBottomOutlined className='info-icon'style={{ color: 'green' }} />
+                            </div>
+                            <div className="info-row-right">
+                                <h2 className="info-row-h2"><CountUp end={venteTotal} />$</h2>
+                                <span className="info-span">Montant total de la vente</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="info-row">
+                        <div className="info_row_title">
+                            <h2 className="info-h2">Ndoé</h2>
+                            <EllipsisOutlined className='info-icon-elli' />
+                        </div>
+                        <div className="info-row-container">
+                            <div className="info-row-left" style={{ background: 'rgba(255, 0, 0, 0.164)' }}>
+                                <VerticalAlignTopOutlined className='info-icon' style={{ color: 'red' }} />
+                            </div>
+                            <div className="info-row-right">
+                                <h2 className="info-row-h2"><CountUp end={depenses} />$</h2>
+                                <span className="info-span">Montant total des dépenses</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default InfoNdoe;
