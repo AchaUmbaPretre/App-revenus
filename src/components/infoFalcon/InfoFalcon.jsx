@@ -7,11 +7,8 @@ import { Select } from 'antd';
 const { Option } = Select;
 
 const InfoFalcon = () => {
-    const [venteTotal, setVenteTotal] = useState(0);
     const [paiement, setPaiement] = useState(0);
-    const [depenses, setDepenses] = useState(0);
     const [depensesFalcon, setDepenseFalcon] = useState(0);
-    const DOMAIN = config.REACT_APP_SERVER_DOMAIN;
     const DOMAINFALCON = config.REACT_APP_SERVER_DOMAIN_FALCON;
     const [dateFilter, setDateFilter] = useState('today');
 
@@ -19,32 +16,6 @@ const InfoFalcon = () => {
         setDateFilter(value);
 /*         fetchData(value); */
       };
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axios.get(`${DOMAIN}/api/rapport/venteTotal/total`);
-                console.log('Vente total:', data); // Vérifier les données
-                setVenteTotal(data[0]?.montant_total_vente || 0);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [DOMAIN]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data } = await axios.get(`${DOMAIN}/api/depenses/depenseCount`);
-                console.log('Dépenses:', data); // Vérifier les données
-                setDepenses(data[0]?.total_depense || 0);
-            } catch (error) {
-                console.log(error);
-            }
-        };
-        fetchData();
-    }, [DOMAIN]);
 
     useEffect(() => {
         const fetchData = async () => {
