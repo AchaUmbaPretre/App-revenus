@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { VerticalAlignBottomOutlined,EllipsisOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
+import { VerticalAlignBottomOutlined, EllipsisOutlined, VerticalAlignTopOutlined } from '@ant-design/icons';
 import axios from 'axios';
 import config from '../../config';
 import CountUp from 'react-countup';
-import { Select } from 'antd';
+import { Select, InputNumber } from 'antd';
+
 const { Option } = Select;
 
 const InfoFalcon = () => {
@@ -11,49 +12,66 @@ const InfoFalcon = () => {
     const [depensesFalcon, setDepenseFalcon] = useState(0);
     const DOMAINFALCON = config.REACT_APP_SERVER_DOMAIN_FALCON;
     const [dateFilter, setDateFilter] = useState('today');
+    const [year, setYear] = useState(new Date().getFullYear());
 
+    const fetchData = useCallback(async (filter, year) => {
+        try {
+            const params = { filter };
+            if (filter === 'year') params.year = year;
 
-    const fetchData = useCallback(async (filter) => {
-        try {
-          const { data } = await axios.get(`${DOMAINFALCON}/depense/depenseTout`, { params: { filter } });
-          setDepenseFalcon(data[0]?.total_depense || 0);
+            const { data } = await axios.get(`${DOMAINFALCON}/depense/depenseTout`, { params });
+            setDepenseFalcon(data[0]?.total_depense || 0);
         } catch (error) {
-          console.error('Error fetching data:', error);
+            console.error('Error fetching data:', error);
         }
-      }, [DOMAINFALCON]);
-    
-      const fetchDataDepense = useCallback(async (filter) => {
+    }, [DOMAINFALCON]);
+
+    const fetchDataDepense = useCallback(async (filter, year) => {
         try {
-          const { data } = await axios.get(`${DOMAINFALCON}/paiement/paimentTout`, { params: { filter } });
-          setPaiement(data[0]?.total_paiement || 0);
+            const params = { filter };
+            if (filter === 'year') params.year = year;
+
+            const { data } = await axios.get(`${DOMAINFALCON}/paiement/paimentTout`, { params });
+            setPaiement(data[0]?.total_paiement || 0);
         } catch (error) {
-          console.error('Error fetching data:', error);
+            console.error('Error fetching data:', error);
         }
-      }, [DOMAINFALCON]);
+    }, [DOMAINFALCON]);
 
     useEffect(() => {
-        fetchData(dateFilter);
-        fetchDataDepense(dateFilter)
-      }, [ fetchData, fetchDataDepense, dateFilter ]);
-    
-    
-      const handleDateFilterChange = (value) => {
+        fetchData(dateFilter, year);
+        fetchDataDepense(dateFilter, year);
+    }, [fetchData, fetchDataDepense, dateFilter, year]);
+
+    const handleDateFilterChange = (value) => {
         setDateFilter(value);
-        fetchData(value);
-        fetchDataDepense(value)
-      };
+        fetchData(value, year);
+        fetchDataDepense(value, year);
+    };
+
+    const handleYearChange = (value) => {
+        setYear(value);
+        if (dateFilter === 'year') {
+            fetchData(dateFilter, value);
+            fetchDataDepense(dateFilter, value);
+        }
+    };
 
     return (
         <>
             <div className="home-rapport">
                 <div className="home-right">
-                    <Select value={dateFilter} onChange={handleDateFilterChange} style={{ width: 200 }}>
+                    <Select value={dateFilter} onChange={handleDateFilterChange} style={{ width: 200, paddingRight:'10px' }}>
                         <Option value="today">Aujourd'hui</Option>
                         <Option value="yesterday">Hier</Option>
                         <Option value="last7days">7 derniers jours</Option>
                         <Option value="last30days">30 derniers jours</Option>
                         <Option value="last1year">1 an</Option>
+                        <Option value="year">Par année</Option>
                     </Select>
+                    {dateFilter === 'year' && (
+                        <InputNumber min={2000} max={new Date().getFullYear()} value={year} onChange={handleYearChange} />
+                    )}
                 </div>
             </div>
             <div className="info-revenus">
