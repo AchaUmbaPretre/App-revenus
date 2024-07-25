@@ -50,7 +50,6 @@ const InfoFalcon = () => {
         const fetchData = async () => {
             try {
                 const { data } = await axios.get(`${DOMAINFALCON}/depense/count1an`);
-                console.log('Dépenses Falcon:', data); // Vérifier les données
                 setDepenseFalcon(data[0]?.total_depense || 0);
             } catch (error) {
                 console.log(error);
@@ -63,7 +62,7 @@ const InfoFalcon = () => {
         const fetchData = async () => {
             try {
                 const { data } = await axios.get(`${DOMAINFALCON}/paiement/paimentTout`);
-                console.log('Paiements:', data); // Vérifier les données
+                console.log('Paiements:', data);
                 setPaiement(data[0]?.total_paiement || 0);
             } catch (error) {
                 console.log(error);
