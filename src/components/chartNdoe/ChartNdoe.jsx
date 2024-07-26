@@ -31,11 +31,11 @@ const ChartNdoe = () => {
     const chartOptions = {
         series: [{
             name: 'Ventes',
-            data: venteData // exemple de données, remplacez-les par vos données réelles
+            data: venteData 
         }],
         options: {
             chart: {
-                type: 'line', // choisissez le type de graphique que vous voulez, par exemple 'line', 'bar', etc.
+                type: 'line', 
                 height: 350
             },
             title: {
@@ -43,7 +43,7 @@ const ChartNdoe = () => {
                 align: 'center'
             },
             xaxis: {
-                categories: monthLabels.slice(0, venteData.length) // exemple de catégories, remplacez-les par vos catégories réelles
+                categories: monthLabels.slice(0, venteData.length)
             },
             yaxis: {
                 title: {

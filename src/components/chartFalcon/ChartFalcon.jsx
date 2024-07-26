@@ -7,7 +7,6 @@ import config from '../../config';
 const ChartFalcon = () => {
     const DOMAINFALCON = config.REACT_APP_SERVER_DOMAIN_FALCON;
     const [paiementData, setPaiementData] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
     const [depenses, setDepenses] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -45,16 +44,16 @@ const ChartFalcon = () => {
         series: [
             {
                 name: 'Paiements',
-                data: paiementData // données réelles des paiements
+                data: paiementData 
             },
             {
                 name: 'Dépenses',
-                data: depenses // données réelles des dépenses
+                data: depenses
             }
         ],
         options: {
             chart: {
-                type: 'line', // choisissez le type de graphique que vous voulez, par exemple 'line', 'bar', etc.
+                type: 'line',
                 height: 350
             },
             title: {
@@ -62,7 +61,7 @@ const ChartFalcon = () => {
                 align: 'center'
             },
             xaxis: {
-                categories: labels // les labels pour les mois
+                categories: labels 
             },
             yaxis: {
                 title: {
