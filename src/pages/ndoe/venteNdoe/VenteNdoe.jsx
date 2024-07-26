@@ -124,7 +124,6 @@ const VenteNdoe = () => {
               } else if (color === 'Blanc'){
                 tagColor = 'white';
               } else {
-                // Couleur par défaut si aucune correspondance n'est trouvée
                 tagColor = 'default';
               }
             
@@ -182,11 +181,6 @@ const VenteNdoe = () => {
         };
         fetchData();
     }, [DOMAIN]);
-
-    const HandRapportOpen = (e) =>{
-/*         setOpens(!opens)
-        setCodeVariant(e) */
-      }
 
       const filteredData = data?.filter((item) =>
         item.nom_marque.toLowerCase().includes(searchValue.toLowerCase()) ||

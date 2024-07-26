@@ -1,6 +1,6 @@
 import { DollarOutlined, UserOutlined, CalendarOutlined } from '@ant-design/icons';
 import React, { useEffect, useState } from 'react';
-import { Space, Table, Popover,Tag,Input, Skeleton} from 'antd';
+import { Space, Table, Popover, Tag, Input, Skeleton } from 'antd';
 import axios from 'axios';
 import config from '../../../config';
 import moment from 'moment';
@@ -11,14 +11,10 @@ const DepenseNdoe = () => {
     const [data, setData] = useState([]);
     const [searchValue, setSearchValue] = useState('');
     const scroll = { x: 400 };
-    // const [open, setOpen] = useState(false);
-    // const [openDetail, setOpenDetail] = useState(false);
-    // const [dateData, setDateData] = useState('');
-
 
     const columns = [
         { title: '#', dataIndex: 'id', key: 'id', render: (text, record, index) => index + 1, width:"3%"},
-       {
+        {
             title: 'Jour',
             dataIndex: 'jour',
             key: 'jour',
@@ -29,8 +25,8 @@ const DepenseNdoe = () => {
                 {record.jour}
               </Tag>
             ),
-          },
-          {
+        },
+        {
             title: 'Date',
             dataIndex: 'date_depense',
             key: 'date',
@@ -41,8 +37,8 @@ const DepenseNdoe = () => {
                 {moment(text).format('DD-MM-yyyy')}
               </Tag>
             ),
-          },
-           {
+        },
+        {
             title: 'Montant total dollars',
             dataIndex: 'montant_total_dollars',
             key: 'montant_total_dollars',
@@ -50,11 +46,11 @@ const DepenseNdoe = () => {
             sortDirections: ['descend', 'ascend'],
             render: (text, record) => (
               <Tag color={record.montant_total_dollars !== null ? 'green' : 'red'} icon={<DollarOutlined />}>
-                {record.montant_total_dollars ? record.montant_total_dollars + ' $' : '0' + ' $'}
+                {record.montant_total_dollars ? `${record.montant_total_dollars} $` : '0 $'}
               </Tag>
             ),
-          },
-           {
+        },
+        {
             title: 'Montant total francs',
             dataIndex: 'montant_total_francs',
             key: 'montant_total_francs',
@@ -62,11 +58,11 @@ const DepenseNdoe = () => {
             sortDirections: ['descend', 'ascend'],
             render: (text, record) => (
               <Tag color={record.montant_total_francs !== null ? 'green' : 'red'}>
-                {record.montant_total_francs !== null ? record.montant_total_francs + ' fc' : '0' + ' fc'}
+                {record.montant_total_francs !== null ? `${record.montant_total_francs} fc` : '0 fc'}
               </Tag>
             ),
-          },
-          {
+        },
+        {
             title: 'Montant total',
             dataIndex: 'montant_total_combine',
             key: 'montant_total_combine',
@@ -74,11 +70,11 @@ const DepenseNdoe = () => {
             sortDirections: ['descend', 'ascend'],
             render: (text, record) => (
               <Tag color={record.montant_total_combine !== null ? 'green' : 'red'} icon={<DollarOutlined />}>
-                {record.montant_total_combine ? record.montant_total_combine + ' $' : '0' + ' $'}
+                {record.montant_total_combine ? `${record.montant_total_combine} $` : '0 $'}
               </Tag>
             ),
-          },
-          {
+        },
+        {
             title: 'Crée par',
             dataIndex: 'createur',
             key: 'createur',
@@ -87,75 +83,70 @@ const DepenseNdoe = () => {
                 {text}
               </Tag>
             ),
-          },
+        },
         {
             title: 'Action',
             key: 'action',
             render: (text, record) => (
-                
               <Space size="middle">
                 <>
                     <Popover title="Voir les détails" trigger="hover">
-{/*                         <Link to={`/depenses?date=${format(new Date(record?.date_depense),'yyyy-MM-dd')}`}> */}
-                        {/* <Link onClick={() => handleOkDetail(record.date_depense)}>
-                            <Button icon={<EyeOutlined />} style={{ color: 'blue' }} />
-                        </Link> */}
                     </Popover> 
                 </>
               </Space>
             ),
-          },
-      ];
+        },
+    ];
 
-      useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
-          try {
-            const { data } = await axios.get(`${DOMAIN}/api/depenses`);
-            setData(data);
-            setIsLoading(false)
-          } catch (error) {
-            console.log(error);
-          }
+            try {
+                const { data } = await axios.get(`${DOMAIN}/api/depenses`);
+                setData(data);
+                setIsLoading(false)
+            } catch (error) {
+                console.log(error);
+            }
         };
         fetchData();
-      }, [DOMAIN]);
+    }, [DOMAIN]);
 
-      const filteredData = data?.filter((item) =>
+    const filteredData = data?.filter((item) =>
         item.jour?.toLowerCase().includes(searchValue.toLowerCase())
-      );
+    );
 
-  return (
-    <>
-        <div className="listePaiement">
-        <div className="liste_wrapper">
-            <div className="liste_wrapper-left">
-            <h2 className="liste_h2">NDOE : dépense</h2>
+    return (
+        <>
+            <div className="listePaiement">
+                <div className="liste_wrapper">
+                    <div className="liste_wrapper-left">
+                        <h2 className="liste_h2">NDOE : dépense</h2>
+                    </div>
+                    <div className="liste_wrapper-right">
+                        <Input
+                            type="search"
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
+                            placeholder="Recherche..."
+                            className="product-search"
+                        />
+                    </div>
+                </div>
+                {isLoading ? (
+                    <Skeleton active />
+                ) : (
+                    <Table
+                        dataSource={filteredData}
+                        columns={columns}
+                        loading={isLoading}
+                        scroll={scroll}
+                        className='table_client'
+                        rowKey="id_paiement"
+                    />
+                )}
             </div>
-            <div className="liste_wrapper-right">
-            <Input
-                type="search"
-                value={searchValue}
-                onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Recherche..."
-                className="product-search"
-            />
-            </div>
-        </div>
-        {isLoading ? (
-            <Skeleton active />
-        ) : (
-            <Table
-            dataSource={filteredData}
-            columns={columns}
-            loading={isLoading}
-            scroll={scroll}
-            className='table_client'
-            rowKey="id_paiement"
-            />
-        )}
-        </div>
-    </>
-  )
+        </>
+    )
 }
 
 export default DepenseNdoe
