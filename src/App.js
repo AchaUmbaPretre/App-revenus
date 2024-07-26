@@ -16,7 +16,6 @@ function App() {
 
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
-    console.log('bonjour')
   };
 
   const Layout = () => (
@@ -34,7 +33,7 @@ function App() {
   );
 
   const SecuriteRoute = ({ children }) => {
-    // Example authentication logic
+   
     return children;
   };
 
