@@ -151,7 +151,7 @@ const InfoRevenus = () => {
                 </div>
                 <div className="info-row">
                     <div className="info_row_title">
-                        <h2 className="info-h2">Total</h2>
+                        <h2 className="info-h2">Chiffre d'affaire</h2>
                         <EllipsisOutlined className='info-icon-elli' />
                     </div>
                     <div className="info-row-container">
